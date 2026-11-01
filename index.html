@@ -1,33 +1,12 @@
 <!DOCTYPE html>
-<html lang="da"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Temaer til debat</title> 
-<style>
-body{font-family:Arial,sans-serif;background:#f4f2ed;color:#26332f;max-width:750px;margin:0 auto;padding:25px 18px}h1{color:#245b50;text-align:center}.box,.chat-box{background:#fff;padding:24px;border-radius:14px;box-shadow:0 3px 12px #00000012;margin-bottom:20px}label{display:block;font-weight:bold;margin:14px 0 8px}select,textarea,input[type=text]{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccc;border-radius:8px}textarea{min-height:120px}button{background:#245b50;color:#fff;border:none;border-radius:8px;padding:12px 18px;cursor:pointer}.chat-log{max-height:400px;overflow:auto;border:1px solid #ddd;padding:10px;margin-bottom:10px}#chatInterface{display:none}.user{text-align:right}.user span{background:#245b50;color:#fff;padding:10px;border-radius:10px;display:inline-block}.gemini span{background:#e1ede8;padding:10px;border-radius:10px;display:inline-block}
-</style></head><body>
-<h1>Temaer til debat</h1>
-<div id="setupBox" class="box">
-<label>Vælg et debatemne</label>
-<select id="emne">
-<option>Bør stemmeret være obligatorisk?</option>
-<option>Bør universitetsuddannelse være gratis for alle?</option>
-<option>Bør ægtefæller have separate bankkonti?</option>
-<option>Bør forældreorlov være 100 % ligeligt fordelt mellem forældrene?</option>
-<option>Bør arbejde hjemmefra være en rettighed?</option>
-<option>Trækker unge familiers arbejdsliv for store veksler på bedsteforældrene?</option>
-<option>Er det egoistisk at prioritere en krævende karriere over tid med sine børn?</option>
-<option>Er husarbejde stadig ulige fordelt i parforholdet?</option>
-<option>Er kvinder og mænd naturligt forskellige?</option>
-<option value="eget">Skriv dit eget emne</option>
-</select>
-<input id="nytEmne" placeholder="Eget emne">
-<label>Jeg argumenterer</label><select id="position"><option value="for">For</option><option value="imod">Imod</option></select>
-<label>Argument</label><textarea id="argument"></textarea><button onclick="startDebat()">Start debat med AI</button></div>
-<div id="chatInterface" class="chat-box"><h3 id="chatTitle"></h3><div id="chatLog" class="chat-log"></div><textarea id="svarInput"></textarea><button onclick="sendSvar()">Send svar</button><div id="chatStatus"></div></div>
-<script>
-let chatHistorie=[];
-function log(t,x){const d=document.createElement('div');d.className=t;const s=document.createElement('span');s.textContent=x;d.appendChild(s);chatLog.appendChild(d)}
-async function startDebat(){const em=document.getElementById('emne').value==='eget'?document.getElementById('nytEmne').value:document.getElementById('emne').value;const arg=document.getElementById('argument').value.trim();const pos=document.getElementById('position').value;if(!arg)return;setupBox.style.display='none';chatInterface.style.display='block';chatTitle.textContent='Emne: '+em;log('user',arg);chatHistorie=[{role:'user',content:`Du er en skarp og polemisk dansk debatmodstander. Debatemne: ${em}. Brugeren argumenterer ${pos}. Du skal konsekvent indtage modsatte position. Skriv et kort, præcist og udfordrende modargument. Højst 30 ord. Vær spids men saglig. Udpeg den svageste del af argumentet. Afslut med ét kritisk spørgsmål.
-
-${arg}`}];await kaldAI();}
-async function sendSvar(){const t=svarInput.value.trim();if(!t)return;log('user',t);chatHistorie.push({role:'user',content:t});svarInput.value='';await kaldAI();}
-async function kaldAI(){chatStatus.textContent='AI tænker...';const r=await fetch('/.netlify/functions/gemini',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:chatHistorie})});const data=await r.json();const svar=data.reply||data.error||JSON.stringify(data);chatHistorie.push({role:'assistant',content:svar});log('gemini',svar);chatStatus.textContent='';}
-</script></body></html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare test</title>
+</head>
+<body>
+<h1>Cloudflare virker 🎉</h1>
+<p>Hvis du kan læse denne tekst, virker Pages-delen.</p>
+</body>
+</html>
